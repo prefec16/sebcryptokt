@@ -27,7 +27,7 @@ object Crypto {
     }
 
     @ExperimentalUnsignedTypes
-    fun computeBrowserExamKey(configurationKey: String, examKeySalt: String? = null): String {
+    fun computeBrowserExamKey(configurationKey: String, examKeySalt: String? = null, signature: String = SEB_SIGNATURE, version: String = SEB_VERSION): String {
         val salt = if (examKeySalt == null) UByteArray(0) else Base64.getDecoder().decode(examKeySalt).toUByteArray()
         return hmacSha256(SEB_SIGNATURE + SEB_VERSION + configurationKey, salt)
     }
