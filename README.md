@@ -1,7 +1,7 @@
 # sebcryptokt
 
 A Kotlin implementation of all cryptographic methods required to spoof the usage of 
-[SafeExamBrowser](https://safeexambrowser.org/news_en.html).
+[SafeExamBrowser](https://safeexambrowser.org/news_en.html). Also includes a config parser. 
 
 ## How does SafeExamBrowser's crypto work?
 
