@@ -22,7 +22,7 @@ On every request, the browser uses the `request url` to create a `X-SafeExamBrow
 * `/mod/quiz/accessrule/seb/config.php?cmid=%QUIZ_ID%` -> to `sortedJsonConfig`
 * Remove `originatorVersion` from `sortedJsonConfig`
 * `Configuration Key` = `configKey` = `sha256(sortedJsonConfig)`
-* `sortedJsonConfig["examKeySalt"] != null` then `salt = base64decode(examKeySalt)` else `salt = new byte[0]`
+* `sortedJsonConfig["examKeySalt"] != null` then `salt = base64decode(examKeySalt)` else `salt = new ubyte[0]`
 * `Browser Exam Key` = `browserExamKey` = `hmacSha256(certSignature + sebVersion + configKey, salt)`
 * `X-SafeExamBrowser-ConfigKeyHash` = `sha256(requestUrl + configKey)`
 * `X-SafeExamBrowser-RequestHash` = `sha256(requestUrl + browserExamKey)`
