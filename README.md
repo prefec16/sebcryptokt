@@ -13,7 +13,7 @@ Also, the `originatorVersion` key is removed for some reason.
 
 After that, the JSON object is converted to String and hashed using `SHA-256`. This is the `Configuration Key`. 
 
-Using this `Configuration Key`, the `Browser Exam Key` is calculated by concating the hash of the certificate used to sign the SEB binary (which can easily extracted with [this nifty tool](https://github.com/prefec16/extract-signature-hash)), the version and the `Configuration Key`, and then hashing it using `HMAC-SHA256`. The salt for this computation is either an empty unsigned byte array if the `examKeySalt` key does not exist in the config, or the `examKeySalt` base64 decoded to an unsigned byte array. 
+The `Browser Exam Key` is calculated by concating the hash of the certificate used to sign the SEB binary (which can easily extracted with [this nifty tool](https://github.com/prefec16/extract-signature-hash)), the version and the `Configuration Key`, and then hashing it using `HMAC-SHA256`. The salt for this computation is either an empty unsigned byte array if the `examKeySalt` key does not exist in the config, or the `examKeySalt` base64 decoded to an unsigned byte array. 
 
 On every request, the browser uses the `request url` to create a `X-SafeExamBrowser-ConfigKeyHash` header by concating the `request url` and the `Configuration Key` and hashing the result using `SHA-256`. It also generates the `X-SafeExamBrowser-RequestHash` the same way, except now the `Browser Exam Key` is used instead of the `Configuration Key`. These two headers are then sent to the quizpage. 
 
