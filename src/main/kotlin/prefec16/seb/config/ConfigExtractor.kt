@@ -12,7 +12,10 @@ import java.io.InputStream
 object ConfigExtractor {
 
     fun parse(inputStream: InputStream): JsonObject {
-        val rootDict = PropertyListParser.parse(inputStream) as NSDictionary
+        val rootDict = inputStream.use {
+             PropertyListParser.parse(it) as NSDictionary
+        }
+
         val rootObj = JsonObject()
         rootDict.allKeys().sortedBy { it.toLowerCase() }.forEach { key ->
             rootDict[key]?.let { obj ->
